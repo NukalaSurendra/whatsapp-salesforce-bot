@@ -23,6 +23,7 @@ def home():
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
+print("⚡ /webhook triggered")	
     incoming_msg = request.values.get('Body', '').lower()
     from_number = request.values.get('From', '').replace('whatsapp:', '')
 
