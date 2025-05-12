@@ -1,3 +1,6 @@
+import sys
+sys.stdout.reconfigure(line_buffering=True)
+
 import os
 from flask import Flask, request, jsonify
 from twilio.twiml.messaging_response import MessagingResponse
