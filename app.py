@@ -38,7 +38,7 @@ def webhook():
         "Description": incoming_msg,
         "Origin": "WhatsApp",
         "Status": "New",
-        "WhatsApp_Number__c": from_number
+        "ContactPhone": from_number
     }
 
     r = requests.post(f"{SF_INSTANCE}/services/data/v60.0/sobjects/Case", headers=headers, json=case_data)
