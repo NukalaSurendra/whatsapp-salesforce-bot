@@ -16,6 +16,7 @@ TWILIO_WHATSAPP_NUMBER = os.getenv("TWILIO_WHATSAPP_NUMBER")
 SF_INSTANCE = os.getenv("SF_INSTANCE")  # e.g., https://yourdomain.my.salesforce.com
 SF_ACCESS_TOKEN = os.getenv("SF_ACCESS_TOKEN")  # Bearer token
 
+print("webhook triggerd")
 @app.route("/", methods=["GET"])
 def home():
     return "Twilio WhatsApp Bot with Salesforce is Live!"
