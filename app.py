@@ -41,7 +41,7 @@ def webhook():
         "ContactPhone": from_number
     }
 
-    r = requests.post(f"{SF_INSTANCE}/services/data/v60.0/sobjects/Case", headers=headers, json=case_data)
+    r = requests.post(f"{SF_INSTANCE}/services/data/v60.0/sobjects/Case/", headers=headers, json=case_data)
     print(f"Salesforce Case creation response: {r.status_code} - {r.text}")
 
     # Respond to user immediately
