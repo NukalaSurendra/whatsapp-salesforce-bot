@@ -63,7 +63,7 @@ def send_message():
         return jsonify({"error": "Missing 'to' or 'message'"}), 400
 
     print(f"Sending message to {to}: {message}")
-
+    to = to if to.startswith('+') else f'+{to}'
     twilio_url = f"https://api.twilio.com/2010-04-01/Accounts/{TWILIO_SID}/Messages.json"
     payload = {
         "From": f"whatsapp:{TWILIO_WHATSAPP_NUMBER}",
