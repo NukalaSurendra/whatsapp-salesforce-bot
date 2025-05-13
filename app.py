@@ -60,10 +60,15 @@ def send_message():
     message = data.get('message')
 
     if not to or not message:
-        return jsonify({"error": "Missing 'to' or 'message'"}), 400
+    	print("Missing 'to' or 'message'")
+    	return jsonify({"error": "Missing 'to' or 'message'"}), 400
 
+    if not to.startswith('+'):
+        to = f'+{to}'
+
+    print(f"[DEBUG] Sending message to whatsapp:{to}: {message}")
     print(f"Sending message to {to}: {message}")
-    to = to if to.startswith('+') else f'+{to}'
+    
     twilio_url = f"https://api.twilio.com/2010-04-01/Accounts/{TWILIO_SID}/Messages.json"
     payload = {
         "From": f"whatsapp:{TWILIO_WHATSAPP_NUMBER}",
