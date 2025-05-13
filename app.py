@@ -50,7 +50,7 @@ def webhook():
 
     # Respond to user immediately
     resp = MessagingResponse()
-    msg = resp.message("Thanks for your message! We'll be in touch soon."+{r.text})
+    msg = resp.message("Thanks for your message! We'll be in touch soon.{r.text}")
     return str(resp)
 
 @app.route("/send-message", methods=["POST"])
