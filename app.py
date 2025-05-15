@@ -80,10 +80,10 @@ def send_message():
     payload = {
         "From": f"whatsapp:{TWILIO_WHATSAPP_NUMBER}",
         "To": f"whatsapp:{to}",
-        "Body": message
+        "ContentSid" : "HXe19c0321d2dfb4fa1e6fe49bbf192fdf"
+        #"Body": message
         #"ContentSid" : "HX2fdd86cbee81cffcc28b70ff20e8cda5"
         #"ContentVariables": message
-        #"Body": message
     }
 
     res = requests.post(twilio_url, data=payload, auth=(TWILIO_SID, TWILIO_AUTH_TOKEN))
