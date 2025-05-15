@@ -37,20 +37,27 @@ def webhook():
         "Content-Type": "application/json"
     }
 
-    case_data = {
-        "Subject": f"WhatsApp from {from_number}",
-        "Description": incoming_msg,
-        "Origin": "WhatsApp",
-        "Status": "New",
-        "WhatsAppNumber__c": from_number
+    whatsapp_transaction = {
+        "Message__c": incoming_msg,
+        "Phone_No__c": from_number
     }
-
-    r = requests.post(f"{SF_INSTANCE}/services/data/v60.0/sobjects/Case/", headers=headers, json=case_data)
+    r = requests.post(f"{SF_INSTANCE}/services/data/v60.0/sobjects/Whatsapp_Transaction__c/", headers=headers, json=whatsapp_transaction)
     print(f"Salesforce Case creation response: {r.status_code} - {r.text}")
+    
+    #case_data = {
+    #    "Subject": f"WhatsApp from {from_number}",
+    #    "Description": incoming_msg,
+    #    "Origin": "WhatsApp",
+    #    "Status": "New",
+    #    "WhatsAppNumber__c": from_number
+    #}
+
+    #r = requests.post(f"{SF_INSTANCE}/services/data/v60.0/sobjects/Case/", headers=headers, json=case_data)
+    #print(f"Salesforce Case creation response: {r.status_code} - {r.text}")
 
     # Respond to user immediately
     resp = MessagingResponse()
-    msg = resp.message("Thanks for your message! We'll be in touch soon.{r.text}")
+    msg = resp.message("Thanks for your message! We'll be in touch soon.")
     return str(resp)
 
 @app.route("/send-message", methods=["POST"])
