@@ -80,7 +80,7 @@ def send_message():
     payload = {
         "From": f"whatsapp:{TWILIO_WHATSAPP_NUMBER}",
         "To": f"whatsapp:{to}",
-        "ContentSid" : "HX2fdd86cbee81cffcc28b70ff20e8cda5"
+        "ContentSid" : "HX3885bf7e1329631d9dadeb13ad2302c4"
         #"Body": message
     }
 
