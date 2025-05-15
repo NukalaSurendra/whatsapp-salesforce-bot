@@ -88,32 +88,6 @@ def send_message():
     res = requests.post(twilio_url, data=payload, auth=(TWILIO_SID, TWILIO_AUTH_TOKEN))
     return jsonify({"status": "sent", "twilio_response": res.text}), res.status_code
 
-@app.route("/send-message-ext", methods=["POST"])
-def send_message():
-    dataExt = request.get_json()
-    to = dataExt.get('to')
-    messageExt = dataExt.get('message')
-
-    if not to or not messageExt:
-    	print("Missing 'to' or 'message'")
-    	return jsonify({"error": "Missing 'to' or 'message'"}), 400
-
-    if not to.startswith('+'):
-        to = f'+{to}'
-
-    print(f"[DEBUG] Sending message to whatsapp:{to}: {messageExt}")
-    print(f"Sending message to {to}: {messageExt}")
-    
-    twilio_url = f"https://api.twilio.com/2010-04-01/Accounts/{TWILIO_SID}/Messages.json"
-    payloadExt = {
-        "From": f"whatsapp:{TWILIO_WHATSAPP_NUMBER}",
-        "To": f"whatsapp:{to}",
-        "Body": messageExt
-    }
-
-    resExt = requests.post(twilio_url, data=payloadExt, auth=(TWILIO_SID, TWILIO_AUTH_TOKEN))
-    return jsonify({"status": "sent", "twilio_response": resExt.text}), resExt.status_code
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # For Render
     app.run(debug=True, host="0.0.0.0", port=port)
