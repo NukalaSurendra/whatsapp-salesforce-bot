@@ -57,8 +57,9 @@ def webhook():
 
     # Respond to user immediately
     resp = MessagingResponse()
-    msg = resp.message("Thanks for your message! We'll be in touch soon.")
-    return str(resp)
+    return jsonify({"status": "sent"})
+    #msg = resp.message("Thanks for your message! We'll be in touch soon.")
+    #return str(resp)
 
 @app.route("/send-message", methods=["POST"])
 def send_message():
